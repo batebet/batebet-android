@@ -1,0 +1,24 @@
+workflows:
+  android-debug:
+    name: BateBet Android Debug APK
+    instance_type: linux_x2
+    max_build_duration: 60
+    environment:
+      node: 20
+      java: 17
+    scripts:
+      - name: Instalar dependências npm
+        script: |
+          npm install
+      - name: Sincronizar Capacitor com Android
+        script: |
+          npx cap sync android
+      - name: Dar permissão ao gradlew
+        script: |
+          chmod +x android/gradlew
+      - name: Build do APK debug
+        script: |
+          cd android
+          ./gradlew assembleDebug
+    artifacts:
+      - android/app/build/outputs/**/*.apk
