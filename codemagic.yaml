@@ -9,7 +9,10 @@ workflows:
       - name: Instalar dependências npm
         script: |
           npm install
-          npm install -D typescript
+          npm install -D typescript @capacitor/assets
+      - name: Gerar ícones e splash a partir de assets/
+        script: |
+          npx capacitor-assets generate --android
       - name: Sincronizar Capacitor com Android
         script: |
           npx cap sync android
