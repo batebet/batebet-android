@@ -9,6 +9,7 @@ workflows:
       - name: Instalar dependências npm
         script: |
           npm install
+          npm install -D typescript
       - name: Sincronizar Capacitor com Android
         script: |
           npx cap sync android
